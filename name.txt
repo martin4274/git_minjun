@@ -1,0 +1,2 @@
+smith  33   Seoul
+julia  22  Japanc

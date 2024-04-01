@@ -1,0 +1,173 @@
+질문 
+sort grades | uniq
+탭은 구분이 되는것이 아니어서 필드를 잘라 나누어주고 uniq를 해야 한다.
+
+1. 알파벳 중복없이 정렬해서 출력하는 코드 보내기
+    sort grades | cut -f1 | uniq
+
+2. sort -n : string -> num
+  1, 11, 111, 2 : 그냥 sort만
+  1, 2, 11, 111 : sort -n
+
+-----------------------------------------------
+깃
+git add example 
+git status
+
+1. 여러 파일을 한꺼번에 스테이징 하기
+  git add . 
+  git status
+
+  git commit -> txt
+  git commit -m "your msg"
+
+  매 수업에 커밋으로 파일을 저장하는 연습하기
+
+2. 문서 편집기 
+  - vi, vim, emacs, notepad++, ...
+  - "vi"sual editor 
+    vim, vi improved (더많은 기능, 정규표현식, ...)
+  - 프롬프트에서 파일을 직접 편집할 수 있게 해주는 툴 
+    특징 
+      - 화면단위 편집기 (줄을 찾아가며 편집가능)
+      - 유닉스 계열에서 가장 많이 사용함
+      - 텍스트 편집 기능만 제공함
+      - "less"
+      - 모드 : 일반모드 <-> 입력모드 <-> 명령모드 
+        (윈도우는 esc ,맥은 커맨드? 누르면서 모드 변경)
+        명령모드 : 파일 저장, 덮어쓸건지, 빠져나갈건지 등을 명령하는 모드
+
+      -> vi로 파일 열기 -> 입력모드 -> esc -> 빠져나가기
+
+        입력모드:
+          - i: 현 커서에서 입력 
+          - a: 현 커서에서 한 칸 뒤에서 입력
+          - o: 한 줄 추가 후 입력
+
+        명령모드
+          ": "으로 시작 -> :wq! + enter (vi에서 저장하고 빠져나가기)
+          - less는 q만해도 나가지는데 vi는 q!해줘야함
+
+깃 관리 
+깃 초기화 -> 깃 시작
+  - set -o vi (한번만 해서 vi를 기본 에디터로 지정)
+    - vim 라인에서 엔터
+
+
+깃은 파일을 저장하고 공유
+
+vi는 파일을 열고 수정하는 기능
+
+------------------------------------------------------
+리눅스 
+3. 패턴매칭 (셀이 해준다.)
+ㄴ 여러개의 이미지파일을 한파일에 한번에 넣고 싶을때 사용
+
+  - 우리가 명령을 하는창 : 프롬프트 -> 셸은 프롬포트에서 프로그램이 작동한다.
+ex) grep Linux sample.txt
+
+  - 프롬프트는 우리가 명령을 실행하는 곳 
+  - 셸은 사용자와 리눅스 운영체제를 연결해 주는 매개체
+
+리눅스 - 셸, 프롬프트 - 사용자 형식으로 존재.
+  
+  - 셸의 역할은 명령 실행, 와일드카드 처리한다.
+ex) grep Linux *.txt 
+ *.txt -> sample.txt, a.txt, ....
+
+셸이 패턴매칭을 처리하여 결과물을 프로그램에 보낸다.
+  - head xxx | grep | ....
+
+[와일드카드]
+  1) *
+    - zero or more 
+    - *.txt : .txt, animals.txt, a.txtt
+    - 0개 이상의 연속열과 일치하는 
+
+  2) ?
+    - 1개 매칭
+    ex) ch1 ch2 ch3 ... ch100g
+        grep Linux ch? # 한자리수만 매칭
+
+  3) []
+    - 대괄호 안에 열거되어 있는 것 중 일치하는 문자열 1개 있을 때
+    ex) grep Linux ch[12345] # 12 (x) 123 (x)
+        grep Linux ch[1-5]
+
+Q1. 짝수로 끝나는 모든 파일 
+  grep Linux ch*[24680]
+
+Q2. 대문자로 시작([A-Z])하고, 언더스코어(-) 포함되어 있는 파이썬 파일(.py) 매칭
+  grep Linux [A-Z]*_*.py
+
+Q3. /etc 디렉터리 안에 파일 확장자가 .conf인 파일 목록 조회하기
+  ls /etc/*.conf 
+
+  - 매칭되는 파일이 없으면 에러가 난다.
+  - 디렉토리 경로, 파일명에 사용
+
+4. 변수 평가 
+- "평가" - 변수를 리터럴 값으로 치환하여 값을 평가함 
+$VAR (대문자는 이미 지정된 변수)
+$var (사용자가 지정하는 변수)
+
+ex) ls $var 
+      -> var=./notes/w3.txt 
+    ls ./notes/w3.txt 
+
+    - $HOME - 루트 디렉터리
+    - $USER - 사용자명 
+
+    - echo
+    - printenv
+    
+    ex) printenv HOME
+        echo $HOME
+       
+        $ echo my directory is $HOME
+         -> my directory is /home/runner
+
+      변수 설정하기 
+        - name=lee
+        - 변수=값
+        - 변수를 사용할때 "$변수명"
+Q1. age라는 변수에 자신의 나이를 담고 "내 나이는 ...살이다." 변수를 이용해서 출력한다.
+  ~/OSS$ age=24
+  ~/OSS$ echo 내 나이는 $age 살이다.
+  내 나이는 24 살이다.
+
+      - dir1=$HOME/notes/chapter1
+      $dir1
+      - cd $dir1
+
+5. 패턴과 변수
+ex)
+mammals
+  ㄴ lizard.txt
+  ㄴ snake.txt 
+reptiles
+
+mv <from> <to>    (이동시키는 명령)
+mv mammals reptiles : mammals가 다 옮겨진다.
+
+
+Q. 변수에 담아서 이동시키려면?
+  dir1=mammals/*.txt
+  mw $dir1 reptiles
+  
+Q. 패턴매칭으로 이동시키려면?
+  mv mammals/*.txt reptiles
+
+6. alias
+- 단축어를 별명으로 설정하기
+- alias uniqc="uniq -c"
+uniqc | ...
+-removeall="rm -r"
+
+- 비슷한 : shadowing
+  alias grep="grep Linux *.txt"
+  alias ls="ls -l"
+
+-alias
+- unalias uniqc (별명을 삭제하고 싶을때
+)
