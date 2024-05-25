@@ -9,14 +9,17 @@
 | 주차 | 파일 | 
 | --- | --- |
 |1주차|[note1](https://replit.com/@jundapi99/OSS#notes/w2.txt)|
-|2주차|[note2]|
-|3주차|[note3]|
-|4주차|[note4]|
-|5주차|[note5]|
-|6주차|[note6]|
-|7주차|[note7]|
-|8주차|[note8]|
-|9주차|[note9]|
-|10주차|[note10]|
-|11주차|[note10]|
+|2주차|[note2](https://replit.com/@jundapi99/OSS#notes/w2.txt)|
+|3주차|[note3](https://replit.com/@jundapi99/OSS#notes/w3.txt)|
+|4주차|[note4](https://replit.com/@jundapi99/OSS#notes/w4.txt)|
+|5주차|[note5](https://replit.com/@jundapi99/OSS#notes/w5.txt)|
+|6주차|[note6](https://replit.com/@jundapi99/OSS#notes/w6.md)|
+|7주차|[note7](https://replit.com/@jundapi99/OSS#notes/w7.md)|
+|8주차|[note8](https://replit.com/@jundapi99/OSS#notes/w8.txt)|
+|9주차|[note9](https://replit.com/@jundapi99/OSS#notes/w9.md)|
+|10주차|[note10](https://replit.com/@jundapi99/OSS#notes/w11.txt)|
+|11주차|[note11](https://replit.com/@jundapi99/OSS#notes/w11.txt)|
+|12주차|[note12](https://replit.com/@jundapi99/OSS#notes/w12.md)|
 
+정보통신공학과 202100631 김민준
+저의 README를 봐주셔서 감사합니다!
