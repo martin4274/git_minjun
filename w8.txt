@@ -1,0 +1,188 @@
+5장은 각자공부
+
+오늘 배우는건 7장
+
+
+
+# 변수 
+- 선언 
+  ex)
+  var="contents"
+  var=kim
+  var="kim lee hong" 
+  - 공백이 없어야 한다.
+  - 데이터 타입이 없음. 모두 문자열로 인식된다. 
+
+- 사용
+  echo $var
+  - 셸이 값을 치환한다. (프로그램 구동 시)
+  echo kim
+  - [a-zA-Z_0-9]*
+
+
+## 할당 
+- 프로그램 이름도 변수로 받을 수 있다. 
+  ex)
+  command=wc
+  op=-c
+  $command $op animals.txt
+
+- 다른 변수도 새 변수로 할당 할 수 있다. 
+  var2=$var
+  echo $var2
+
+- 선언하지 않은 변수 : null 값이 설정됨 (오류가 나지 않음)
+  -명령 라인에 넣어도 무시됨
+
+
+## null
+ex)
+var=
+var=""
+var=''
+
+var=' ' (공백이 한개 있는거랑 다름)
+
+
+
+# 변수 활용하기
+ex) 
+- file=grades -> grades1
+- file=grades1
+- '${변수}' 구조
+- ${file}1
+
+Q. grades -> grades1 파일명 변경하기
+  mv $file ${file}1
+  mv $file $file1  (x)  (위와 다른 변수를 불러온것이 된다.)
+
+
+## substring 추출하기
+- animals.txt -> animals.md
+- ${var:start:size}
+- ${var:10:4}  # start:end
+
+ex)
+file=animals.txt
+echo ${file:0:7}
+
+
+## $(( 변수 )) 구조
+- 수학 연산을 가능하게 하는 구조
+ex)
+echo $(( 4 + 8 ))
+- 숫자인 문자영리 들어왔을 때, 숫자로 인식함 
+
+Q. 5를 변수에 담고 활용해서 15를 변수에 담아보라.
+
+
+ex) 
+echo $ (( ten = ten + 1 ))    (안에서 변수 설정 가능, 초기값음 null 값이 된다.)
+
+- 비교 연산 
+ex)
+$(( ten > 0 ))  #1==True,0==False
+
+Q. 임의의 수 num이 2의 배수인지 확인하는 코드 작성하기
+$(( num%2 == 0 )) 
+
+
+## $( ) 표현
+- 명령의 결과값을 변수에 담고 싶을 때
+ex)
+result=$( cat /etc/passwd | cut -d: -f1 )
+
+
+
+# 스크립트 파일 작성하기
+- 파일 확장자는 .sh or none
+  1) 파일을 실행가능한 상태로 바꾼다.
+  2) 실행하기
+- shebang 달기
+
+ex)
+#!/bin/bash    (소개하는 글 느낌)더 확실하게 지정하는거다, 우리는 외워서 사용해야한다!
+
+echo hello world # 주석달기
+
+
+
+# 인수 
+
+
+## 위치 인수
+- $n (0-9)
+- 외부에서 인수를 받아와서 사용할 때
+- ${10} : 10 이상일때 사용
+ex)
+echo $1 $2
+
+
+## $#
+- 총 인수 개수 
+- 큰 따옴표로 인수 감싸는 습관 들여야함
+
+ex) 
+echo "$#"  (o)
+echo '$#'  (x)
+
+name="$1"
+echo $name
+
+
+
+Q. 디렉토리를 인수로 받아서, 파일과 디렉토리 개수를 세는 스크립트 짜기 
+count.sh
+
+-출력- 
+현재 위치 : ...
+파일 ...개, 폴더 ....개입니다.
+
+test case 1 : .
+test case 2 : *
+
+ex) 
+./file.sh a b c (a=1 b=2 c=3)  # 함수의 개념 a,b,c가 인자 느낌 '$1' 은 인자의 위치를 가르킬때 사용한다.
+
+file.sh
+echo $1 (=a를 가져온다.)
+grep '[ ]' $2 (=b를 가져온다.)
+
+
+A. 스크립트에 넣어 저장
+#!/bin/bash
+
+dir="$1"    # 항상잘 감싸주기
+files=$( ls -l "$dir" | cut -c1 | grep -v "d" | wc -l )
+directory=$( ls -l $dir |cut -c1 | grep "d" | wc -l )
+
+echo "파일 $files개, 폴더 $ directory개입니다."
+
+./count (인자) (인자) (인자)...
+
+
+
+## $*
+- 모든 인수를 출력해주는 변수 
+ex)
+echo $name $2 $3
+echo $*
+
+
+
+# 전화번호부 관리 스크립트 만들기
+1) 검색
+  ./book.sh 이름 
+
+2) 추가 
+  이름, 번호를 인자로 넣어 추가하기 
+
+3) 삭제
+  이름으로 검색해서 이름, 번호 삭제하기 (grep등으로 삭제)
+
+a1.검색
+name="$1"
+grep "$1" book.txt
+
+./book.sh Minsu P
+#!/bin/bash
