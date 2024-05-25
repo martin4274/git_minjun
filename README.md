@@ -8,7 +8,7 @@
 
 | 주차 | 파일 | 
 | --- | --- |
-|1주차|[note1]|
+|1주차|[note1](https://replit.com/@jundapi99/OSS#notes/w2.txt)|
 |2주차|[note2]|
 |3주차|[note3]|
 |4주차|[note4]|
